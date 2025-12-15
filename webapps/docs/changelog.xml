@@ -109,11 +109,16 @@
     <changelog>
       <scode>
         This release contains all of the changes up to and including those in
-        Apache Tomcat 11.0.14 plus the additional changes listed below. (markt)
+        Apache Tomcat 11.0.15 plus the additional changes listed below. (markt)
       </scode>
       <update>
         The minimum Java version has been updated to Java 21. (markt)
       </update>
+      <add>
+        Add <code>test.silent</code> property to suppress JUnit console output
+        during test execution. Useful for cleaner console output when running
+        tests with multiple threads. (csutherl)
+      </add>
     </changelog>
   </subsection>
   <subsection name="Catalina">
@@ -186,10 +191,6 @@
         to <code>true</code>. (markt)
       </update>
       <!-- Entries for backport and removal before 12.0.0-M1 below this line -->
-      <fix>
-        Add log warnings for additional Host <code>appBase</code> suspicious
-        values. (remm)
-      </fix>
     </changelog>
   </subsection>
   <subsection name="Coyote">
@@ -218,11 +219,13 @@
         allowing to restrict which groups can be enabled on the SSL engine.
         (remm)
       </update>
+      <update>
+        Remove support for HTTP 0.9. (markt)
+      </update>
       <!-- Entries for backport and removal before 12.0.0-M1 below this line -->
       <fix>
-        Don't log an incorrect certificate <code>KeyStore</code> location when
-        creating a TLS connector if the <code>KeyStore</code> instance has been
-        set directly on the connector. (markt)
+        Improve warnings when setting ciphers lists in the FFM code, mirrorring
+        the tomcat-native changes. (remm)
       </fix>
     </changelog>
   </subsection>
@@ -263,10 +266,6 @@
   <subsection name="Cluster">
     <changelog>
       <!-- Entries for backport and removal before 12.0.0-M1 below this line -->
-      <fix>
-        Correct a regression in 11.0.11 that broke some clustering
-        configurations. (markt)
-      </fix>
     </changelog>
   </subsection>
   <subsection name="WebSocket">
@@ -297,26 +296,27 @@
   <subsection name="Web applications">
     <changelog>
       <!-- Entries for backport and removal before 12.0.0-M1 below this line -->
-      <fix>
-        Manager: Fix abrupt truncation of the HTML and JSON complete server
-        status output if one or more of the web applications failed to start.
-        (schultz)
-      </fix>
-      <add>
-        Manager: Include web application state in the HTML and JSON complete
-        server status output. (markt)
-      </add>
+    </changelog>
+  </subsection>
+  <subsection name="jdbc-pool">
+    <changelog>
+      <!-- Entries for backport and removal before 12.0.0-M1 below this line -->
     </changelog>
   </subsection>
   <subsection name="Other">
     <changelog>
+      <add>
+        Add test profile system for selective test execution. Profiles can be
+        specified via <code>-Dtest.profile=&lt;name&gt;</code> to run specific
+        test subsets without using patterns directly. Profile patterns are
+        defined in <code>test-profiles.properties</code>. (csutherl)
+      </add>
       <update>
         Update Derby to 10.17.1.0. (markt)
       </update>
       <!-- Entries for backport and removal before 12.0.0-M1 below this line -->
       <update>
-        Update file extension to media type mappings to align with the current
-        list used by the Apache Web Server (httpd). (markt)
+        Update the internal fork of Commons Pool to 2.13.0. (markt)
       </update>
     </changelog>
   </subsection>
